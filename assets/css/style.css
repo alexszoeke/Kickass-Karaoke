@@ -1,9 +1,16 @@
-.container > div {
-    border: solid black 2px;
+body {
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+.container-fluid {
+    margin: 10rem auto;
+    width: 90%;
 }
 
-.container-fluid {
-    margin: 5rem auto;
-    width: 90%;
+h1, h2 {
+    font-family: 'Limelight', cursive;
+}
+
+#lyrics-display > h2 {
+    text-align: center;
 }
 
