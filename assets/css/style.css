@@ -1,8 +1,9 @@
-div {
+.container > div {
     border: solid black 2px;
 }
 
-.container {
-    margin: 2rem auto;
+.container-fluid {
+    margin: 5rem auto;
+    width: 90%;
 }
 
