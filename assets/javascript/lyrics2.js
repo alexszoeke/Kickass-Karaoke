@@ -17,6 +17,7 @@ $("#song-search-btn").on("click", function(event){
             var fix = response.result.track.text;
             while (fix.indexOf("\n") !== -1) {
               fix = fix.replace("\n", "<br>")
+        
             }
         
             $("#lyrics-display").html(fix);
@@ -30,3 +31,9 @@ $("#song-search-btn").on("click", function(event){
 
     });
 });
+
+
+
+
+
+
