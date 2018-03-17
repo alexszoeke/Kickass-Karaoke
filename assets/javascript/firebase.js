@@ -17,17 +17,25 @@ $(document).ready(function () {
   var email = "";
   var password = "";
   var user;
+  var dbUser;
+  var userOnline = false;
   var artistSearch = "";
   var songSearch = "";
   var artistSongSearch = "";
   var userID = "";
   var userReference = "";
   var globalSearchArtist;
+  var userSeachArtist;
   var globalSearchSong;
+  var userSearchSong;
   var arrayGlobeSearchArtist = [];
+  var arrayUserSeachArtist = [];
   var arrayGlobeSearchSong = [];
+  var arrayUserSearchSong = [];
   var globeArtist = {};
+  var userArtist = {};
   var globeSong = {};
+  var userSong = {};
 
   $("#register").on("click", function (event) {
     // Creating a new user
@@ -35,7 +43,11 @@ $(document).ready(function () {
     console.log("register button clicked");
     email = $("#username").val().trim();
     password = $("#inputPassword2").val().trim();
-    console.log(email, password);
+    $("#username").val("");
+    $("#inputPassword2").val("");
+    $("#username").hide();
+    $("#inputPassword2").hide();
+    console.log(email);
 
     auth.createUserWithEmailAndPassword(email, password).catch(function (error) {
       // Handle Errors here.
@@ -50,6 +62,13 @@ $(document).ready(function () {
     event.preventDefault();
     email = $("#username").val().trim();
     password = $("#inputPassword2").val().trim();
+    $("#username").val("");
+    $("#inputPassword2").val("");
+    $("#username").hide();
+    $("#inputPassword2").hide();
+    $("#register").hide();
+    $("#login").hide();
+    $("#logout").show();
 
     auth.signInWithEmailAndPassword(email, password).catch(function (error) {
       // Handle Errors here.
@@ -65,9 +84,10 @@ $(document).ready(function () {
     if (user) {
       userID = user.email;
       userReference = user.uid;
-      $("#register").hide();
-      $("#login").hide();
-      $("#logout").show();
+      dbUser = "/users/" + userReference + "/searches/";
+      userOnline = true;
+      $(".recentSearch").remove();
+      updateUserSearch();
       console.log(user)
       console.log(user.email);
     } else {
@@ -78,9 +98,13 @@ $(document).ready(function () {
     }
   });
 
-  //TODO: Add sign out button to Sign out a user
+  //User signout
   $("#logout").on("click", function () {
     event.preventDefault();
+    $("#username").show();
+    $("#inputPassword2").show();
+    $(".recentSearch").remove();
+    updateGlobeSearch();
     auth.signOut().then(function () {
       console.log("signout successful");
     }).catch(function (error) {
@@ -95,29 +119,35 @@ $(document).ready(function () {
     event.preventDefault();
     artistSearch = $("#artist-search").val().trim();
     songSearch = $("#title-search").val().trim();
-    artistSongSearch = artistSearch + ": " + songSearch;
-    // refDatabase.ref("/users/").push(userReference);
-    var dbUser = "/users/" + userReference + "/searches/";
+    var tempLowerCase = artistSearch + ": " + songSearch;
+    artistSongSearch = titleCase(tempLowerCase);
+
 
     if (artistSearch !== "") {
-      refDatabase.ref("/searches/artist").push(artistSearch.toLocaleLowerCase());
-      if (user) {
-        refDatabase.ref(dbUser + "artist").push(artistSearch.toLocaleLowerCase());
+      refDatabase.ref("/searches/artist").push(artistSearch.toLowerCase());
+      if (userOnline === true) {
+        refDatabase.ref(dbUser + "artist").push(artistSearch.toLowerCase());
       }
     }
 
     if (songSearch !== "") {
       refDatabase.ref("/searches/song").push(songSearch.toLowerCase());
-      if (user) {
-        refDatabase.ref(dbUser + "song").push(songSearch.toLocaleLowerCase());
+      if (userOnline === true) {
+        refDatabase.ref(dbUser + "song").push(songSearch.toLowerCase());
       }
     }
 
     if (artistSearch !== "" && songSearch !== "") {
-      refDatabase.ref("/searches/artistandsong").push(artistSongSearch.toLocaleLowerCase());
-      if (user) {
-        refDatabase.ref(dbUser + "artistandsong").push(artistSongSearch.toLocaleLowerCase());
+      refDatabase.ref("/searches/artistandsong").push(artistSongSearch);
+      if (userOnline === true) {
+        refDatabase.ref(dbUser + "artistandsong").push(artistSongSearch);
       }
+    }
+    $(".recentSearch").remove();
+    if (userOnline === true) {
+      updateUserSearch();
+    } else {
+      updateGlobeSearch();
     }
   })
 
@@ -136,7 +166,7 @@ $(document).ready(function () {
       })
       console.log(sortedGlobeArtist);
 
-          console.log(globeArtist);
+      console.log(globeArtist);
 
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
@@ -171,22 +201,16 @@ $(document).ready(function () {
         $("#recent-display").append(text);
       }
 
-      console.log(sortedGlobeArtistSong);
-
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
     })
 
   }
-  updateGlobeSearch();
-
-  $("#song-search-btn").on("click", function () {
-    $(".recentSearch").remove();
+  if (userOnline === true) {
+    updateUserSearch();
+  } else {
     updateGlobeSearch();
-  })
-
-
-  // Append list of artist to Recent Search
+  }
 
 
   function snapshotToArray(snapshot) {
@@ -206,11 +230,75 @@ $(document).ready(function () {
 
     var count = {};
     arr.forEach(function (i) {
-      console.log(i);
       count[i] = (count[i] || 0) + 1;
     });
     console.log(count);
     return count;
   }
+  function titleCase(str) {
+    var splitStr = str.toLowerCase().split(' ');
+    for (var i = 0; i < splitStr.length; i++) {
+      // Assign it back to the array
+      splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+    }
+    console.log(splitStr.join(""));
+    return splitStr.join(' ');
+  }
 
+
+  // User specific search history
+  function updateUserSearch() {
+    //Organize artist searches
+    refDatabase.ref(dbUser + "artist").once("value", function (snapshot) {
+
+      arrayUserSearchArtist = snapshotToArray(snapshot);
+
+      userArtist = countGlobalArtistSearch(arrayUserSearchArtist);
+
+      //Sort artists by number of times searched
+      var sortedUserArtist = Object.keys(userArtist).sort(function (a, b) {
+        return userArtist[b] - userArtist[a]
+      })
+      console.log(sortedUserArtist);
+
+      console.log(userArtist);
+
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    })
+    // Organize song searches
+    refDatabase.ref(dbUser + "song").once("value", function (snapshot) {
+
+      arrayUserSearchSong = snapshotToArray(snapshot);
+
+      userSong = countGlobalArtistSearch(arrayUserSearchSong);
+      // Sort songs by number of times searched
+      var sortedUserSong = Object.keys(userSong).sort(function (a, b) {
+        return userSong[b] - userSong[a]
+      })
+      console.log(sortedUserSong);
+
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    })
+    //Organize artist and song searches
+    refDatabase.ref(dbUser + "artistandsong").once("value", function (snapshot) {
+
+      arrayUserSearchArtistSong = snapshotToArray(snapshot);
+
+      userArtistSong = countGlobalArtistSearch(arrayUserSearchArtistSong);
+      // Sort songs by number of times searched
+      var sortedUserArtistSong = Object.keys(userArtistSong).sort(function (a, b) {
+        return userArtistSong[b] - userArtistSong[a]
+      })
+      for (var i = 0; i < 5; i++) {
+        var text = $("<p></p>").text(sortedUserArtistSong[i]).addClass("recentSearch");
+        $("#recent-display").append(text);
+      }
+
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    })
+
+  }
 })
