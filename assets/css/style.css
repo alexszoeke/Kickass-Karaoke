@@ -18,3 +18,7 @@ h1, h2 {
     display: none;
 }
 
+#recent-display {
+    display: block;
+}
+
