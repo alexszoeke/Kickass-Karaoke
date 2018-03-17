@@ -1,14 +1,21 @@
 body {
-    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-family: 'Lato', sans-serif;
+    background-color: red;
+    color: white;
 }
 .container-fluid {
-    margin: 10rem auto;
+    margin: 8rem auto 0 auto;
     width: 90%;
+    background-color: black;
+    padding-bottom: 15rem;
+    
 }
 
 h1, h2 {
-    font-family: 'Limelight', cursive;
+    font-family: 'Codystar', cursive;
+    color: gold;
 }
+
 
 #lyrics-display > h2 {
     text-align: center;
@@ -25,3 +32,18 @@ h1, h2 {
 .form-inline .form-group {
     display: inline-block;
 }
+
+#register {
+    margin-right: 10px;
+}
+
+.bg-dark {
+    background-color: black!important;
+}
+
+.btn-primary {
+    color: black;
+    background-color: gold;
+    border-color:white;
+}
+
