@@ -1,40 +1,38 @@
-@font-face {
-    font-family: Geotica;
-    src: url("./assets/css/Geotica2012-Regular.woff") format("woff"), /* Modern Browsers */
-         url("./assets/css/Geotica2012-Regular.ttf")  format("truetype"), /* Safari, Android, iOS */
-}
+/* font-family: 'Limelight', cursive;
+font-family: 'Yanone Kaffeesatz', sans-serif; */
 
 body {
-    font-family: 'Lato', sans-serif;
-    background-color: black;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    background-color: #3a3a3c;
     color: black;
 }
 
 
 .container-fluid {
-    margin: 8rem auto 0 auto;
+    margin: 2rem auto;
     width: 90%;
-    background-color: white;
-    padding-bottom: 15rem;
+    background-color: #d1d2d4;
+    padding-bottom: 2rem;
     
 }
 
 h1, h2 {
-    font-family: Geotica;
-    color: gold;
+    font-family: 'Limelight', cursive;
 }
 
 h1 {
     font-size: 4.5rem;
+    color: #c9252f;
 }
 
 h2 {
     font-size: 3rem;
     margin: 15px;
+    color: #c9252f;
 }
 
 
-#lyrics-display > h2 {
+.col-md-6 > h2 {
     text-align: center;
 }
 
@@ -55,13 +53,40 @@ h2 {
 }
 
 .bg-dark {
-    background-color: black!important;
+    background-color: #d1d2d4!important;
 }
 
 .btn-primary {
     color: black;
-    background-color: gold;
-    border-color:white;
+    background-color: #ebbb4a;
+    border-color:#c9252f;
 }
+
+.btn-primary:hover {
+    color:#ebbb4a;
+    background-color: black;
+    border-color:#c9252f;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+    color: #ebbb4a;
+    background-color: black;
+    border-color: #c9252f;
+}
+
+.btn-primary:focus {
+    box-shadow: 0 0 0 0.2rem black;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus, .show>.btn-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem #ebbb4a;
+}
+
+.form-control {
+    border: 1px solid #c9252f;
+}
+
+
+
 
 

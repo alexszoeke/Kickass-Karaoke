@@ -10,16 +10,18 @@
     <!--Bootstrap CDN-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/css?family=Codystar|Lato|Montez" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Limelight|Yanone+Kaffeesatz" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css">
 
 </head>
 
 <body>
 
-<!--NavBar-->    
-    <nav class="navbar navbar-light bg-dark fixed-top">
-        <span class="navbar-brand mb-0 h1"><h1>Kickass Karaoke</h1></span>
+    <!--NavBar-->
+    <nav class="navbar navbar-light bg-dark">
+        <span class="navbar-brand mb-0 h1">
+            <h1>Kickass Karaoke</h1>
+        </span>
         <!--Login-->
         <form class="form-inline" id="login-form">
             <div class="form-group mb-2">
@@ -35,7 +37,7 @@
             <button type="submit" class="btn btn-primary mb-2" id="logout">Logout</button>
         </form>
     </nav>
-<!--Display-->
+    <!--Display-->
     <div class="container-fluid">
         <div class="row justify-content-center">
             <!--Video Display and Recently Searched-->
@@ -44,23 +46,23 @@
                 <!--Song Search-->
                 <form class="form-inline needs-validation" novalidate>
                     <div class="form-row form-group mb-2">
-                      <div class="form-group mx-sm-3 mb-2">
-                        <label for="artist-search" class="sr-only">Artist</label>
-                        <input type="text" class="form-control" id="artist-search" placeholder="Artist" required>
-                        <div class="invalid-feedback">
-                          Please provide a valid artist.
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label for="artist-search" class="sr-only">Artist</label>
+                            <input type="text" class="form-control" id="artist-search" placeholder="Artist" required>
+                            <div class="invalid-feedback">
+                                Please provide a valid artist.
+                            </div>
                         </div>
-                      </div>
-                      <div class="form-group mx-sm-3 mb-2">
-                        <label for="title-search" class="sr-only">Song</label>
-                        <input type="text" class="form-control" id="title-search" placeholder="Song" required>
-                        <div class="invalid-feedback">
-                          Please provide a valid song.
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label for="title-search" class="sr-only">Song</label>
+                            <input type="text" class="form-control" id="title-search" placeholder="Song" required>
+                            <div class="invalid-feedback">
+                                Please provide a valid song.
+                            </div>
                         </div>
-                      </div>
                     </div>
-                    <button type="submit" class="btn btn-primary mb-2" id="song-search-btn">Search</button>
-                  </form>
+                    <button type="submit" class="btn btn-primary mb-2" id="song-search-btn" data-toggle="button" aria-pressed="false" autocomplete="off">Search</button>
+                </form>
 
                 <!--Video Display-->
                 <div class="row" id="video-display">
@@ -74,9 +76,11 @@
             </div>
 
             <!--Lyrics-->
-            <div class="col-md-5" id="lyrics-display">
+            <div class="col-md-6">
                 <h2>Lyrics</h2>
-                
+            <div id="lyrics-display">
+
+            </div>
             </div>
         </div>
     </div>
@@ -85,28 +89,28 @@
     <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="./assets/javascript/firebase.js"></script>
-    <script src="./assets/javascript/lyrics.js"></script>
+    <script src="./assets/javascript/lyrics2.js"></script>
     <script src="./assets/javascript/youtube.js"></script>
     <script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (function() {
-          'use strict';
-          window.addEventListener('load', function() {
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.getElementsByClassName('needs-validation');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function(form) {
-              form.addEventListener('submit', function(event) {
-                if (form.checkValidity() === false) {
-                  event.preventDefault();
-                  event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-              }, false);
-            });
-          }, false);
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
         })();
-        </script>
+    </script>
 
 </body>
 
