@@ -3,7 +3,7 @@ font-family: 'Yanone Kaffeesatz', sans-serif; */
 
 body {
     font-family: 'Yanone Kaffeesatz', sans-serif;
-    background-color: #3a3a3c;
+    background-image: url("../images/always_greygit .png");
     color: black;
 }
 
@@ -84,6 +84,10 @@ h2 {
 
 .form-control {
     border: 1px solid #c9252f;
+}
+
+#recent-display, #lyrics-display {
+    font-size: 18px;
 }
 
 
