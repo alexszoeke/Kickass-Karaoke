@@ -90,6 +90,23 @@ h2 {
     font-size: 18px;
 }
 
+#recent-header {
+    display: none;
+}
+
+
+/*This image needs to be mobile responsive!!*/
+#spotlight {
+    position: absolute;
+    width: 500px;
+    top: 0;
+    right: -40px;
+    z-index: 2;
+}
+
+#lyrics {
+    z-index: 1;
+}
 
 
 
