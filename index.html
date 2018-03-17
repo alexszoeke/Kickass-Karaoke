@@ -10,14 +10,15 @@
     <!--Bootstrap CDN-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Limelight|Yanone+Kaffeesatz" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Codystar|Lato|Montez" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css">
+
 </head>
 
 <body>
 
 <!--NavBar-->    
-    <nav class="navbar navbar-light bg-light fixed-top">
+    <nav class="navbar navbar-light bg-dark fixed-top">
         <span class="navbar-brand mb-0 h1"><h1>Kickass Karaoke</h1></span>
         <!--Login-->
         <form class="form-inline" id="login-form">
@@ -38,7 +39,7 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <!--Video Display and Recently Searched-->
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <h2>Song Search</h2>
                 <!--Song Search-->
                 <form class="form-inline needs-validation" novalidate>
@@ -58,7 +59,7 @@
                         </div>
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-primary mb-2">Search</button>
+                    <button type="submit" class="btn btn-primary mb-2" id="song-search-btn">Search</button>
                   </form>
 
                 <!--Video Display-->
@@ -68,15 +69,14 @@
                 <!--Recently Searched-->
                 <h2>Recents</h2>
                 <div class="row" id="recent-display">
-                    Recently Searched Display Row
+
                 </div>
             </div>
 
             <!--Lyrics-->
-            <div class="col-md-6" id="lyrics-display">
+            <div class="col-md-5" id="lyrics-display">
                 <h2>Lyrics</h2>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet incidunt atque molestiae sed rem earum nam ab eligendi facilis
-                laborum quam odio sequi dignissimos tenetur odit blanditiis, amet necessitatibus. Voluptatum?
+                
             </div>
         </div>
     </div>

@@ -1,19 +1,36 @@
+@font-face {
+    font-family: Geotica;
+    src: url("./assets/css/Geotica2012-Regular.woff") format("woff"), /* Modern Browsers */
+         url("./assets/css/Geotica2012-Regular.ttf")  format("truetype"), /* Safari, Android, iOS */
+}
+
 body {
     font-family: 'Lato', sans-serif;
-    background-color: red;
-    color: white;
+    background-color: black;
+    color: black;
 }
+
+
 .container-fluid {
     margin: 8rem auto 0 auto;
     width: 90%;
-    background-color: black;
+    background-color: white;
     padding-bottom: 15rem;
     
 }
 
 h1, h2 {
-    font-family: 'Codystar', cursive;
+    font-family: Geotica;
     color: gold;
+}
+
+h1 {
+    font-size: 4.5rem;
+}
+
+h2 {
+    font-size: 3rem;
+    margin: 15px;
 }
 
 
@@ -46,4 +63,5 @@ h1, h2 {
     background-color: gold;
     border-color:white;
 }
+
 
