@@ -65,7 +65,7 @@ $(document).ready(function () {
       userID = user.email;
       userReference = user.uid;
       $("#register").hide();
-      // $("#login").hide();
+      $("#login").hide();
       $("#logout").show();
       console.log(user)
       console.log(user.email);
@@ -98,52 +98,57 @@ $(document).ready(function () {
     var dbUser = "/users/" + userReference + "/searches/";
 
     if (artistSearch !== "") {
-      refDatabase.ref("/searches/artist").push(artistSearch);
-      refDatabase.ref(dbUser + "artist").push(artistSearch);
+      refDatabase.ref("/searches/artist").push(artistSearch.toLocaleLowerCase());
+      refDatabase.ref(dbUser + "artist").push(artistSearch.toLocaleLowerCase());
     }
     if (songSearch !== "") {
-      refDatabase.ref("/searches/song").push(songSearch);
-      refDatabase.ref(dbUser + "song").push(songSearch);
+      refDatabase.ref("/searches/song").push(songSearch.toLowerCase());
+      refDatabase.ref(dbUser + "song").push(songSearch.toLocaleLowerCase());
     }
   })
 
   // Database listener for searches if user not signed in
+  function updateGlobeSearch() {
+    refDatabase.ref("/searches/artist").once("value", function (snapshot) {
 
-  refDatabase.ref("/searches/artist").on("value", function (snapshot) {
+      arrayGlobeSearchArtist = snapshotToArray(snapshot);
 
-    arrayGlobeSearchArtist = snapshotToArray(snapshot);
+      globeArtist = countGlobalArtistSearch(arrayGlobeSearchArtist);
 
-    globeArtist = countGlobalArtistSearch(arrayGlobeSearchArtist);
+      //Sort by number of times searched
+      var sortedGlobeArtist = Object.keys(globeArtist).sort(function (a, b) {
+        return globeArtist[b] - globeArtist[a]
+      })
+      console.log(sortedGlobeArtist);
 
-    //Sort by number of times searched
-    var sortedGlobeArtist = Object.keys(globeArtist).sort(function (a, b) {
-      return globeArtist[b] - globeArtist[a]
+      for (var i = 0; i < 5; i++) {
+        var text = $("<p></p>").text(sortedGlobeArtist[i]).addClass("recentSearch");
+        $("#recent-display").append(text);
+      }
+
+      console.log(globeArtist);
+
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
     })
-    //TODO:  build for loop to use sorted artist array instead of object
-    Object.keys(globeArtist).forEach(function (key) {
-      var text = $("<p></p>").text(key)
-      $("#recent-display").append(text);
-    });
 
-    console.log(globeArtist);
+    refDatabase.ref("/searches/song").once("value", function (snapshot) {
 
-    console.log(sortedGlobeArtist);
+      arrayGlobeSearchSong = snapshotToArray(snapshot);
+      globeSong = countGlobalArtistSearch(arrayGlobeSearchSong);
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    })
+  }
+  updateGlobeSearch();
 
-  }, function (errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  })
-
-  refDatabase.ref("/searches/song").on("value", function (snapshot) {
-
-    arrayGlobeSearchSong = snapshotToArray(snapshot);
-    globeSong = countGlobalArtistSearch(arrayGlobeSearchSong);
-  }, function (errorObject) {
-    console.log("The read failed: " + errorObject.code);
+  $("#song-search-btn").on("click", function(){
+    $(".recentSearch").remove();
+    updateGlobeSearch();
   })
 
 
-
-  // Append list of artist to Recent Sear
+  // Append list of artist to Recent Search
 
 
   function snapshotToArray(snapshot) {
