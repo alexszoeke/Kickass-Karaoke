@@ -1,5 +1,6 @@
-$("#song-search-btn").on("click", function(event){
+$(".song-search-btn").on("click", function(event){
     event.preventDefault();
+
     var artistSearch = $("#artist-search").val();
     var titleSearch = $("#title-search").val();
 
@@ -28,5 +29,7 @@ $("#song-search-btn").on("click", function(event){
             
           }
 
+
     });
 });
+
