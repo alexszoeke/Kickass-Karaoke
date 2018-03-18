@@ -3,7 +3,7 @@ font-family: 'Yanone Kaffeesatz', sans-serif; */
 
 body {
     font-family: 'Yanone Kaffeesatz', sans-serif;
-    background-image: url("../images/always_greygit .png");
+    background-image: url("../images/always_grey.png");
     color: black;
 }
 
@@ -90,6 +90,23 @@ h2 {
     font-size: 18px;
 }
 
+#recent-header {
+    display: none;
+}
+
+
+/*This image needs to be mobile responsive!!*/
+#spotlight {
+    position: absolute;
+    width: 500px;
+    top: 0;
+    right: -40px;
+    z-index: 2;
+}
+
+#lyrics {
+    z-index: 1;
+}
 
 
 
