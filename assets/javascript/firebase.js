@@ -54,6 +54,13 @@ $(document).ready(function () {
       var errorCode = error.code;
       var errorMessage = error.message;
       console.log(errorCode, errorMessage);
+      if (errorCode) {
+        $(".modal-title").text("Registration Error");
+        $(".modal-body").text(errorMessage);
+        $("#loginModal").modal();
+      } else {
+        console.log(errorMessage);
+      }
     });
   });
 
@@ -75,6 +82,13 @@ $(document).ready(function () {
       var errorCode = error.code;
       var errorMessage = error.message;
       console.log(errorCode, errorMessage);
+      if (errorCode) {
+        $(".modal-title").text("Sign In Error");
+        $(".modal-body").text(errorMessage);
+        $("#loginModal").modal();
+      } else {
+        console.log(errorMessage);
+      }
     });
 
   })
@@ -101,17 +115,7 @@ $(document).ready(function () {
   //User signout
   $("#logout").on("click", function () {
     event.preventDefault();
-    $("#username").show();
-    $("#inputPassword2").show();
-    $(".recentSearch").remove();
-    updateGlobeSearch();
-    auth.signOut().then(function () {
-      console.log("signout successful");
-    }).catch(function (error) {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      console.log(errorCode, errorMessage);
-    });
+    signOut();
   });
 
   //saving searches to database
@@ -196,6 +200,7 @@ $(document).ready(function () {
       var sortedGlobeArtistSong = Object.keys(globeArtistSong).sort(function (a, b) {
         return globeArtistSong[b] - globeArtistSong[a]
       })
+      // Post top 5 searches to page under Trending
       for (var i = 0; i < 5; i++) {
         var text = $("<p></p>").text(sortedGlobeArtistSong[i]).addClass("recentSearch");
         $("#recent-display").append(text);
@@ -301,4 +306,40 @@ $(document).ready(function () {
     })
 
   }
+  function signOut() {
+    auth.signOut().then(function () {
+      $("#username").show();
+      $("#inputPassword2").show();
+      $(".recentSearch").remove();
+      updateGlobeSearch();
+      auth.signOut().then(function () {
+        console.log("signout successful");
+      }).catch(function (error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
+    });
+  }
+  //Idle time calculator to sign out with no activity
+  var idleTime = 0;
+  //Increment the idle time counter every minute.
+  var idleInterval = setInterval(timerIncrement, 60000); // 1 minute
+
+  //Zero the idle timer on mouse movement.
+  $(this).mousemove(function (e) {
+    idleTime = 0;
+  });
+  $(this).keypress(function (e) {
+    idleTime = 0;
+  })
+  function timerIncrement() {
+    idleTime = idleTime + 1;
+    if (idleTime > 9) { // 10 minutes
+      if (userOnline = true) {
+        signOut();
+      }
+    }
+  }
+
 })
