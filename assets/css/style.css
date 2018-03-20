@@ -72,6 +72,12 @@ h2 {
 /* Trending and Recents Display */
 #recent-display {
     display: block;
+    font-size: 18px;
+}
+
+/* Lyrics Display */
+#lyrics {
+    z-index: 1;
 }
 
 
@@ -103,11 +109,7 @@ h2 {
 }
 
 
-
-#recent-display {
-    font-size: 18px;
-}
-
+/* These ID's are making certain elements hidden until the logic says otherwise */
 #recent-header, #lyrics-display {
     display: none;
 }
@@ -122,9 +124,6 @@ h2 {
     z-index: 2;
 }
 
-#lyrics {
-    z-index: 1;
-}
 
 
 /*Modal CSS*/
