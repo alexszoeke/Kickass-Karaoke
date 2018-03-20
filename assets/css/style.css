@@ -3,7 +3,7 @@ font-family: 'Yanone Kaffeesatz', sans-serif; */
 
 body {
     font-family: 'Yanone Kaffeesatz', sans-serif;
-    background-image: url("../images/always_grey.png");
+    background-color: #d1d2d4;
     color: black;
 }
 
@@ -11,7 +11,7 @@ body {
 .container-fluid {
     margin: 2rem auto;
     width: 90%;
-    background-color: #d1d2d4;
+    /* background-color: #d1d2d4; */
     padding-bottom: 2rem;
     
 }
@@ -22,7 +22,7 @@ h1, h2 {
 
 h1 {
     font-size: 4.5rem;
-    color: #c9252f;
+    color: #ebbb4a;
 }
 
 h2 {
@@ -36,7 +36,7 @@ h2 {
     text-align: center;
 }
 
-#logout {
+#logout, #login-success {
     display: none;
 }
 
@@ -53,7 +53,7 @@ h2 {
 }
 
 .bg-dark {
-    background-color: #d1d2d4!important;
+    background-image: url("../images/always_grey.png");
 }
 
 .btn-primary {
@@ -106,6 +106,43 @@ h2 {
 
 #lyrics {
     z-index: 1;
+}
+
+
+/*Modal CSS*/
+.modal-header, .modal-footer {
+    background-image: url("../images/always_grey.png");
+}
+
+.modal-body, .modal-content {
+    background-color:#d1d2d4;
+}
+
+.modal-header {
+    font-family: 'Limelight', cursive;
+    color: #ebbb4a;
+}
+
+.modal-header > h5 {
+    font-size: 2.25rem;
+}
+
+.btn-secondary {
+    color: #d1d2d4;
+    background-color: #c9252f;
+    border-color: #c9252f;
+}
+
+/*End Modal CSS*/
+
+/*Footer*/
+.fixed-bottom {
+    text-align: center;
+    vertical-align: middle;
+    background-image: url("../images/always_grey.png");
+    height: 2.25rem;
+    padding: .5rem;
+    color: #ebbb4a;
 }
 
 

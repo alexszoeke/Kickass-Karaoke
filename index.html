@@ -10,7 +10,9 @@
     <!--Bootstrap CDN-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
+    <!--Google Fonts-->
     <link href="https://fonts.googleapis.com/css?family=Limelight|Yanone+Kaffeesatz" rel="stylesheet">
+    <!--Personal Stylesheet-->
     <link rel="stylesheet" href="./assets/css/style.css">
 
 </head>
@@ -27,6 +29,7 @@
             <div class="form-group mb-2">
                 <label for="staticEmail2" class="sr-only">Email</label>
                 <input type="text" class="form-control" id="username" placeholder="example@email.com">
+                <p id="login-success">Logged in: </p>
             </div>
             <div class="form-group mx-sm-3 mb-2">
                 <label for="inputPassword2" class="sr-only">Password</label>
@@ -37,7 +40,8 @@
             <button type="submit" class="btn btn-primary mb-2" id="logout">Logout</button>
         </form>
     </nav>
-    <!--Display-->
+
+    <!--Main Display-->
     <div class="container-fluid">
         <div class="row justify-content-center">
             <!--Video Display and Recently Searched-->
@@ -68,7 +72,9 @@
                 <div class="row" id="video-display">
 
                 </div>
-                <!--Recently Searched-->
+                <!--Recently Searched/Trending
+                Recently Searched will show for users who are logged in, trending will show for users who are not logged in
+                -->
                 <h2 id="recent-header">Recents</h2>
                 <h2 id="trending-header">Trending</h2>
                 <div class="row" id="recent-display">
@@ -76,7 +82,7 @@
                 </div>
             </div>
 
-            <!--Lyrics-->
+            <!--Lyrics Display-->
             <div class="col-md-6">
                 <h2 id="lyrics">Lyrics</h2>
                 <img src="./assets/images/spotlight.png" alt="Spotlight" id="spotlight">
@@ -86,7 +92,16 @@
             </div>
         </div>
     </div>
+    <!--End Main Display-->
 
+    <!--Footer-->
+    <div class="fixed-bottom">
+        <div class="copyright">
+                © Copyright 2018 Kickass Koders
+        </div>
+    </div>
+
+    <!--Modal-->
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -106,6 +121,7 @@
             </div>
         </div>
     </div>
+    <!--End Modal-->
 
 
     <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
