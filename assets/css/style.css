@@ -3,7 +3,7 @@ font-family: 'Yanone Kaffeesatz', sans-serif; */
 
 body {
     font-family: 'Yanone Kaffeesatz', sans-serif;
-    background-color: #d1d2d4;
+    background-color: #aaaaaa;
     color: black;
 }
 
@@ -11,7 +11,7 @@ body {
 .container-fluid {
     margin: 2rem auto;
     width: 90%;
-    /* background-color: #d1d2d4; */
+    background-color: #d1d2d4;
     padding-bottom: 2rem;
     
 }
@@ -38,6 +38,10 @@ h2 {
 
 #logout, #login-success {
     display: none;
+}
+
+#login-success {
+    color: #ebbb4a;
 }
 
 #recent-display {
