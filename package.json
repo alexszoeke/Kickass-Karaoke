@@ -1,0 +1,22 @@
+{
+  "name": "spotifyattempt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.3",
+    "morgan": "^1.9.0",
+    "querystring": "^0.2.0",
+    "request": "^2.85.0",
+    "spotify": "^0.3.0",
+    "spotify-web-api-node": "^3.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
