@@ -58,6 +58,8 @@ $(document).ready(function () {
         $(".modal-title").text("Registration Error");
         $(".modal-body").text(errorMessage);
         $("#loginModal").modal();
+        $("#username").show();
+        $("#inputPassword2").show();
       } else {
         console.log(errorMessage);
       }
@@ -76,6 +78,7 @@ $(document).ready(function () {
     $("#register").hide();
     $("#login").hide();
     $("#logout").show();
+    $("#login-success").text("Logged in as " + email).show()
 
     auth.signInWithEmailAndPassword(email, password).catch(function (error) {
       // Handle Errors here.
@@ -86,8 +89,15 @@ $(document).ready(function () {
         $(".modal-title").text("Sign In Error");
         $(".modal-body").text(errorMessage);
         $("#loginModal").modal();
+        $("#username").show();
+        $("#inputPassword2").show();
+        $("#register").show();
+        $("#login").show();
+        $("#logout").hide();
+        $("#login-success").hide();
       } else {
         console.log(errorMessage);
+
       }
     });
 
@@ -310,6 +320,7 @@ $(document).ready(function () {
     auth.signOut().then(function () {
       $("#username").show();
       $("#inputPassword2").show();
+      $("#login-success").hide();
       $(".recentSearch").remove();
       updateGlobeSearch();
       auth.signOut().then(function () {
