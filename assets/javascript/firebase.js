@@ -47,6 +47,9 @@ $(document).ready(function () {
     $("#inputPassword2").val("");
     $("#username").hide();
     $("#inputPassword2").hide();
+    $("#register").hide();
+    $("#login").hide();
+    $("#logout").show();
     console.log(email);
 
     auth.createUserWithEmailAndPassword(email, password).catch(function (error) {
@@ -60,6 +63,9 @@ $(document).ready(function () {
         $("#loginModal").modal();
         $("#username").show();
         $("#inputPassword2").show();
+        $("#register").hide();
+        $("#login").hide();
+        $("#logout").show();
       } else {
         console.log(errorMessage);
       }
@@ -112,6 +118,8 @@ $(document).ready(function () {
       userOnline = true;
       $(".recentSearch").remove();
       updateUserSearch();
+      $("#trending-header").hide();
+      $("#recent-header").show();
       console.log(user)
       console.log(user.email);
     } else {
@@ -119,6 +127,8 @@ $(document).ready(function () {
       $("#register").show();
       $("#login").show();
       $("#logout").hide();
+      $("#trending-header").show();
+      $("#recent-header").hide();
     }
   });
 
