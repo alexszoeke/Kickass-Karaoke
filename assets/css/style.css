@@ -1,6 +1,13 @@
 /* font-family: 'Limelight', cursive;
 font-family: 'Yanone Kaffeesatz', sans-serif; */
 
+
+/* NavBar */
+.bg-dark {
+    background-image: url("../images/always_grey.png");
+}
+
+/* Body & Container */
 body {
     font-family: 'Yanone Kaffeesatz', sans-serif;
     background-color: #aaaaaa;
@@ -16,6 +23,13 @@ body {
     
 }
 
+.col-md-6 > h2 {
+    text-align: center;
+}
+
+
+
+/* Headers */
 h1, h2 {
     font-family: 'Limelight', cursive;
 }
@@ -32,10 +46,8 @@ h2 {
 }
 
 
-.col-md-6 > h2 {
-    text-align: center;
-}
-
+/* Forms */
+/* Login */
 #logout, #login-success {
     display: none;
 }
@@ -44,22 +56,26 @@ h2 {
     color: #ebbb4a;
 }
 
-#recent-display {
-    display: block;
-}
-
-.form-inline .form-group {
-    display: inline-block;
-}
-
 #register {
     margin-right: 10px;
 }
 
-.bg-dark {
-    background-image: url("../images/always_grey.png");
+.form-control {
+    border: 1px solid #c9252f;
 }
 
+/* Search Form */
+.form-inline .form-group {
+    display: inline-block;
+}
+
+/* Trending and Recents Display */
+#recent-display {
+    display: block;
+}
+
+
+/* Buttons */
 .btn-primary {
     color: black;
     background-color: #ebbb4a;
@@ -86,15 +102,13 @@ h2 {
     box-shadow: 0 0 0 0.2rem #ebbb4a;
 }
 
-.form-control {
-    border: 1px solid #c9252f;
-}
 
-#recent-display, #lyrics-display {
+
+#recent-display {
     font-size: 18px;
 }
 
-#recent-header {
+#recent-header, #lyrics-display {
     display: none;
 }
 
