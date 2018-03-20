@@ -2,6 +2,36 @@
 font-family: 'Yanone Kaffeesatz', sans-serif; */
 
 
+@media screen and (max-width: 1024px) {
+    .form-inline {
+        display: block;
+        text-align: center;
+    }
+
+    #spotlight {
+        display: none;
+    }
+
+    .navbar{
+        text-align: center;
+        display: block;
+    }
+
+    .navbar-brand {
+        white-space: normal;
+    }
+
+    .btn-primary, form  {
+        width: 100%;
+    }
+
+    .col-md-6 > h2 {
+        text-align: left!important;
+    }
+}
+
+
+
 /* NavBar */
 .bg-dark {
     background-image: url("../images/always_grey.png");
@@ -108,14 +138,24 @@ h2 {
     box-shadow: 0 0 0 0.2rem #ebbb4a;
 }
 
-
-/* These ID's are making certain elements hidden until the logic says otherwise */
-#recent-header, #lyrics-display {
-    display: none;
+.btn-primary:not(:disabled):not(.disabled).active {
+    color: #ebbb4a;
+    background-color: black;
+    border-color: #c9252f;
 }
 
 
-/*This image needs to be mobile responsive!!*/
+/* These ID's are making certain elements hidden until the logic says otherwise */
+#recent-header, #login-success  {
+    display: none;
+}
+
+#lyrics-display {
+    font-size: 18px;
+}
+
+
+/*Spotlight Icon*/
 #spotlight {
     position: absolute;
     width: 500px;
