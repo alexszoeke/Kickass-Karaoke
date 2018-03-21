@@ -27,8 +27,22 @@ window.onSpotifyWebPlaybackSDKReady = () => {
     console.log('The Web Playback SDK is ready to play music!');
     console.log('Device ID', device_id);
   })
-   
-   
+
+  player.getCurrentState().then(state => {
+    if (!state) {
+      console.error('User is not playing music through the Web Playback SDK');
+      return;
+    }
+  
+    let {
+      current_track,
+      next_tracks: [next_track]
+    } = state.track_window;
+  
+    console.log('Currently Playing', current_track);
+    console.log('Playing Next', next_track);
+  });
+  
    $('#togglePlayer').on('click', function(){
       player.togglePlay();
       console.log(player.togglePlay());
