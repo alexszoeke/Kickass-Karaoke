@@ -78,7 +78,7 @@ h2 {
 
 /* Forms */
 /* Login */
-#logout, #login-success {
+#logout, #login-success, #spotify-uid {
     display: none;
 }
 
