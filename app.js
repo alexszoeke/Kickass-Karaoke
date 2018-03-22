@@ -44,13 +44,14 @@ var app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public')).use(cookieParser());
+
 app.get('/login', function (req, res) {
 
   var state = generateRandomString(16);
   res.cookie(stateKey, state);
 
   //Requesting for authorization
-  var scope = 'streaming user-read-birthdate user-read-private user-read-email';
+  var scope = 'streaming user-read-birthdate user-modify-playback-state user-read-private user-read-email';
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
       response_type: 'code',
@@ -59,6 +60,7 @@ app.get('/login', function (req, res) {
       redirect_uri: redirect_uri,
       state: state
     }));
+
 });
 
 var access_token;
@@ -66,7 +68,7 @@ app.get('/callback', function (req, res) {
 
   // your application requests refresh and access tokens
   // after checking the state parameter
-
+  console.log("/Callback ");
   var code = req.query.code || null;
   var state = req.query.state || null;
   var storedState = req.cookies ? req.cookies[stateKey] : null;
@@ -105,7 +107,7 @@ app.get('/callback', function (req, res) {
 
         // use the access token to access the Spotify Web API
         request.get(options, function (error, response, body) {
-          //console.log(body);
+          console.log(body);
         });
 
         // we can also pass the token to the browser to make requests from there
@@ -130,7 +132,7 @@ app.get('/refresh_token', function (req, res) {
   var refresh_token = req.query.refresh_token;
   var authOptions = {
     url: 'https://accounts.spotify.com/api/token',
-    headers: { 'Authorization': 'Bearer ' + (new Buffer(client_id + ':' + client_secret).toString('base64')) },
+    headers: { 'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64')) },
     form: {
       grant_type: 'refresh_token',
       refresh_token: refresh_token
@@ -149,20 +151,45 @@ app.get('/refresh_token', function (req, res) {
 });
 
 app.post('/search', function (req, res) {
-  console.log(req.body);
+ 
   console.log('test');
+  console.log(req.body);
   spotifyApi.search(req.body.artist + ' ' + req.body.title, ['track'], { limit: 5, offset: 1 }, function (err, data) {
     if (err) {
       console.error(err);
     } else {
-      console.log(data.body.tracks);
+      //console.log(data.body.tracks);
       res.json(data.body);
     }
   });
-  //console.log("This is : " + JSON.stringify(data));
-
-  // Do something with 'data' 
+ 
 });
 
+app.put('/play', function (req, res){
+
+  console.log("In play");
+  var Request = req.body;
+
+  var play = {
+    url: 'https://api.spotify.com/v1/me/player/play?device_id=' + Request.dev_id,
+    headers: {
+      'Accept' : 'application/json',
+      'Content-Type' : 'application/json',
+      'Authorization': 'Bearer ' + Request.access_token  
+    },
+    data: {
+      'context_uri' : Request.URI,
+      'offset': {
+        'position': 5
+      }
+    }
+    
+};
+   request.put(play, function(error, response){
+     console.log(error);
+   });
+
+    
+})
 console.log('Listening on 8888');
 app.listen(8888);

@@ -10,20 +10,173 @@
     <!--Bootstrap CDN-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
+    <!--Google Fonts-->
     <link href="https://fonts.googleapis.com/css?family=Limelight|Yanone+Kaffeesatz" rel="stylesheet">
+    <!--Personal Stylesheet-->
     <link rel="stylesheet" href="./home/assets/css/style.css">
 
 </head>
 
 <body>
 
-    <h1>Please login via Spotify to use our app</h1>
-    <a href="/login" class="btn btn-primary">Log in with Spotify</a>
+    <!--NavBar-->
+    <nav class="navbar navbar-light bg-dark">
+        <span class="navbar-brand mb-0 h1">
+            <h1>Kickass Karaoke</h1>
+        </span>
+        <!--Login-->
+        <form class="form-inline" id="login-form">
+            <div class="form-group mb-2">
+                <label for="staticEmail2" class="sr-only">Email</label>
+                <input type="text" class="form-control" id="username" placeholder="example@email.com">
+                <p id="login-success">Logged in: </p>
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+                <label for="inputPassword2" class="sr-only">Password</label>
+                <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-primary mb-2" id="register">Register</button>
+            <button type="submit" class="btn btn-primary mb-2" id="login">Login</button>
+            <button type="submit" class="btn btn-primary mb-2" id="logout">Logout</button>
+            <h2 id= "display-name" class="clearfix"></h2>
+        </form>
+    </nav>
 
+    <!--Main Display-->
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <!--Video Display and Recently Searched-->
+            <div class="col-md-5">
+                <h2>Song Search</h2>
+                <!--Song Search-->
+                <form class="form-inline needs-validation" novalidate>
+                    <div class="form-row form-group mb-2">
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label for="artist-search" class="sr-only">Artist</label>
+                            <input type="text" class="form-control" id="artist-search" placeholder="Artist" required>
+                            <div class="invalid-feedback">
+                                Please provide a valid artist.
+                            </div>
+                        </div>
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label for="title-search" class="sr-only">Song</label>
+                            <input type="text" class="form-control" id="title-search" placeholder="Song" required>
+                            <div class="invalid-feedback">
+                                Please provide a valid song.
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-2" id="song-search-btn" data-toggle="button" aria-pressed="false" autocomplete="off">Search</button>
+                </form>
+
+                <!--Video Display-->
+                <div class="row" id="video-display">
+
+                </div>
+                <!--Recently Searched/Trending
+                Recently Searched will show for users who are logged in, trending will show for users who are not logged in
+                -->
+                <h2 id="recent-header">Recents</h2>
+                <h2 id="trending-header">Trending</h2>
+                <div class="row" id="recent-display">
+
+                </div>
+            </div>
+
+            <!--Lyrics Display-->
+            <div class="col-md-6">
+                <h2 id="lyrics">Lyrics</h2>
+                <img src="./assets/images/spotlight.png" alt="Spotlight" id="spotlight">
+                <div id="lyrics-display">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Main Display-->
+
+    <!--Footer-->
+    <div class="fixed-bottom">
+        <div class="copyright">
+            © Copyright 2018 Kickass Koders
+        </div>
+    </div>
+
+    <!--Modal-->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Be Patient!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Two players are already playing. Try again later.</p>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Modal-->
+
+    <!-- Including the script so that when app loads it goes straight to spotify login -->
+    <script src = "./home/assets/javascript/spotLogin.js"></script>
+    <!-- Including the handlebars libary -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
+    <!-- Including the firebase library -->
     <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+    <!-- Including Jquery library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="./home/assets/javascript/firebase.js"></script>
+    <!-- Including our own firebase javascipts -->
+    <script src="./home/assets/javascript/firebase.js"></script>    
+    <!-- Indcluding the poppers library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <!-- Including bootstrap JS library -->    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <!-- These are templates using the handlebars -->    
+    <script id="user-name-template" type="text/x-handlebars-template">
+            <h2>Logged in as {{display_name}}</h1>
+           
+         </script>
+    <script id="spotify-player-template" type="text/x-handlebars-template">
+    
+    </script>
+    <!-- Code.js includes how we get the access_token and users spotify information -->    
+    <script src="./home/assets/javascript/code.js"></script>
+    <!-- Includes spotify's library for the spotify player -->
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+    <!-- Includes our own JS files for the spotify player -->
+    <script src="./home/assets/javascript/player.js"></script>
+    <!-- Including our Javascript that gets the lyrics and includes the calls to our back-end for spotify -->
     <script src="./home/assets/javascript/lyrics2.js"></script>
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+
 </body>
 
 </html>
