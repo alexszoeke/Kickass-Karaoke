@@ -1,58 +1,54 @@
-window.onSpotifyWebPlaybackSDKReady = () => {
 
-  const play = ({
-    spotify_uri,
-    playerInstance: {
-      _options: {
-        getOAuthToken,
-        id
-      }
+var dev_id;
+window.onSpotifyWebPlaybackSDKReady = () => {
+    var player = new Spotify.Player({
+        name: 'Kickass Karaoke Player',
+        spotify_uri : trackURI,
+        getOAuthToken: callback => {
+            $.ajax ({
+                url : '/refresh_token',
+                data: {
+                    'refresh_token': refresh_token
+                  }
+                }).done(function(data) {
+                  access_token = data.access_token;
+           
+            });
+            callback(access_token);
+        }
+    })
+   
+    
+   player.connect().then(success => {
+       if (success){
+           console.log("Connection to Spotify Succeeded")
+       }
+   });
+   
+   player.addListener('ready', ({ device_id }) => {
+    console.log('The Web Playback SDK is ready to play music!');
+    dev_id = device_id;
+    console.log('Device ID', device_id);
+  })
+
+  player.getCurrentState().then(state => {
+    if (!state) {
+      console.error('User is not playing music through the Web Playback SDK');
+      return;
     }
-  }) => {
-    console.log(this);
-   playerInstance._options.getOAuthToken(access_token => {
-      fetch(`https://api.spotify.com/v1/me/player/play?device_id=${id}`, {
-        method: 'PUT',
-        body: JSON.stringify({ uris: [spotify_uri] }),
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${access_token}`
-        },
-      });
-    });
-  };
   
-  play({
-    playerInstance: new Spotify.Player({ name: "" }),
-    spotify_uri: 'spotify:track:7xGfFoTpQ2E7fRF5lN10tr',
+    let {
+      current_track,
+      next_tracks: [next_track]
+    } = state.track_window;
+  
+    console.log('Currently Playing', current_track);
+    console.log('Playing Next', next_track);
   });
 
-    // const token = access_token;
-    // const player = new Spotify.Player({
-    //   name: 'Web Playback SDK Quick Start Player',
-    //   getOAuthToken: cb => { cb(token); },
-    //   spotify_uri: 'spotify:track:7xGfFoTpQ2E7fRF5lN10tr'  
-    // });
   
-    // // Error handling
-    // player.addListener('initialization_error', ({ message }) => { console.error(message); });
-    // player.addListener('authentication_error', ({ message }) => { console.error(message); });
-    // player.addListener('account_error', ({ message }) => { console.error(message); });
-    // player.addListener('playback_error', ({ message }) => { console.error(message); });
+  };
   
-    // // Playback status updates
-    // player.addListener('player_state_changed', state => { console.log(state); });
-  
-    // // Ready
-    // player.addListener('ready', ({ device_id }) => {
-    //   console.log('Ready with Device ID', device_id);
-    // });
-  
-    // // Connect to the player!
-    // player.connect();
-    // player.togglePlay();
-      
-    
-};
 
-
+  
+  
