@@ -90,6 +90,10 @@ h2 {
     margin-right: 10px;
 }
 
+#title-search {
+    margin-left: -15px;
+}
+
 .form-control {
     border: 1px solid #c9252f;
 }
@@ -143,6 +147,12 @@ h2 {
     background-color: black;
     border-color: #c9252f;
 }
+
+
+
+.mb-2 {
+    margin-bottom: 0!important;
+}  /*This makes buttons perfectly in line with their forms at max width!*/
 
 
 /* These ID's are making certain elements hidden until the logic says otherwise */
