@@ -10,7 +10,7 @@ var bodyParser = require('body-parser')
 var spotifyApi = new SpotifyWebApi({
   clientId: '6b5333e36255420cbe72baede7fde86d',
   clientSecret: 'cacee0742a844488a33ad4623eeaed1c',
-  redirectUri: 'http://localhost:8888/callback' || "https://shielded-gorge-35242.herokuapp.com/callback";
+  redirectUri: 'http://localhost:8888/callback' || "https://shielded-gorge-35242.herokuapp.com/callback"
 });
 var client_id = '6b5333e36255420cbe72baede7fde86d'; // Your client id
 var client_secret = 'cacee0742a844488a33ad4623eeaed1c'; // Your secret
