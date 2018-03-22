@@ -172,24 +172,26 @@ app.put('/play', function (req, res){
 
   var play = {
     url: 'https://api.spotify.com/v1/me/player/play?device_id=' + Request.dev_id,
+    method: "PUT",
+    json: true,
     headers: {
       'Accept' : 'application/json',
       'Content-Type' : 'application/json',
       'Authorization': 'Bearer ' + Request.access_token  
     },
-    data: {
-      'context_uri' : Request.URI,
-      'offset': {
-        'position': 5
+    body: {   
+      data: {
+        'uris' : Request.URI,
       }
     }
-    
 };
-   request.put(play, function(error, response){
-     console.log(error);
+
+   request(play, function(error, response){
+     console.log(response);
+     console.log("-------------------------------------------------------------")
    });
 
     
 })
 console.log('Listening on 8888');
-app.listen(8888);
+app.listen(process.env.PORT || 8888);

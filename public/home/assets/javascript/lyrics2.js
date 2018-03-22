@@ -63,7 +63,7 @@ function callSpotify(artist, title){
 // Function to find the song we're looking for
 function findSong(songs){
  //Saves the first song's uri into the variabel trackURI
- trackURI = songs[0].uri;
+ trackURI = songs[2].uri;
  console.log(trackURI);
  pushURI(trackURI);
  
@@ -73,28 +73,30 @@ function findSong(songs){
 
 function pushURI(URI){
 
+  
 //   $.ajax({
 //     method: 'PUT',
-//     url: 'https://api.spotify.com/v1/me/player/play?device_id=' + dev_id,    
-//     data: {
-//       context_uri : URI,
-//       offset: {
-//         position: 5
+//     url: 'https://api.spotify.com/v1/me/player/play?' + dev_id,    
+//     body: {
+//       data: {
+//       'uris' : [URI]
 //       }
 //     },
 //     headers: {
 //       'Accept' : 'application/json',
 //       'Content-Type' : 'application/json',
-//       'Authorization': "Bearer " + access_token  
+//       'Authorization': 'Bearer ' + access_token  
 //     },
+
 //     success: function(response){
 //       console.log("Success in call to player");
 //       console.log(response);
-//     },
+//     }
 //     error: function(err){
-//       console.log('Error : ' + err);
+//       console.log(err);
 //     }
 // });
+
 
   $.ajax({
     url: '/play', //Call to our backend in the '/play' path
