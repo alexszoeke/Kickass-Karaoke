@@ -105,7 +105,7 @@ h2 {
     font-size: 18px;
 }
 
-/* Lyrics Display */
+/* Lyrics Header */
 #lyrics {
     z-index: 1;
 }
@@ -146,7 +146,7 @@ h2 {
 
 
 /* These ID's are making certain elements hidden until the logic says otherwise */
-#recent-header, #login-success  {
+#login-success  {
     display: none;
 }
 
