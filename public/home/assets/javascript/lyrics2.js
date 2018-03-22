@@ -20,7 +20,6 @@ $("#song-search-btn").on("click", function(event){
         url: queryURL,
         method: "GET",
         success: function (response) {
-            console.log(response);
         
             //for loop or replace for the entire string to make them new lines
             var fix = response.result.track.text;
@@ -40,10 +39,7 @@ $("#song-search-btn").on("click", function(event){
             $("#lyrics-display").html("This song is not available. Please try another song!");
             
           }
-
     });
-
-
 });
 
 // Function to go into our back-end js to get the spotifiy information for our track
