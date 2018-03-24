@@ -73,9 +73,29 @@
 
                 <!--Video Display-->
                 <div class="row" id="video-display">
-                    <div class="card w-100">
+                    <div class="card media-player">
                         <div class="card-body">
-                            <h5 class="card-title">Song by Artist</h5>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <button type="button" class="btn btn-default">
+                                        <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-default">
+                                        <span class="glyphicon glyphicon-pause" aria-hidden="true"></span> Pause
+                                    </button>
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="row">
+                                        <h5 class="card-title song">Song</h5> 
+                                        <h5 class="card-title">by</h5>
+                                        <h5 class="card-title artist">Artist</h5>
+                                    </div>
+                                    <div class="row">
+                                        <input id="vol-control" type="range" min="0" max="100" step="1" oninput="SetVolume(this.value)" onchange="SetVolume(this.value)"></input>
+                                    </div>
+
+                                </div>
+                            </div>
                             <button class="btn btn-primary mirror-btn" value="0">Mirror 1</button>
                             <button class="btn btn-primary mirror-btn" value="1">Mirror 2</button>
                             <button class="btn btn-primary mirror-btn" value="2">Mirror 3</button>
