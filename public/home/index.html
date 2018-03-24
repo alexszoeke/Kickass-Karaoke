@@ -77,15 +77,15 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-2">
-                                    <button type="button" class="btn btn-default">
+                                    <button type="button" class="btn btn-default" id="play-pause">
                                         <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Play/Pause
                                     </button>
                                 </div>
                                 <div class="col-md-10">
                                     <div class="row">
-                                        <h5 class="card-title song">Song</h5> 
-                                        <h5 class="card-title">by</h5>
-                                        <h5 class="card-title artist">Artist</h5>
+                                        <h5 class="card-title" id="song">Song</h5> 
+                                        <h5 class="card-title"> by </h5>
+                                        <h5 class="card-title" id="artist">Artist</h5>
                                     </div>
                                     <div class="row">
                                         <input id="vol-control" type="range" min="0" max="100" step="1" oninput="SetVolume(this.value)" onchange="SetVolume(this.value)"></input>
@@ -160,8 +160,7 @@
     </div>
     <!--End Modal-->
 
-    <!-- Including the script so that when app loads it goes straight to spotify login -->
-    <script src="./home/assets/javascript/spotLogin.js"></script>
+
     <!-- Including the handlebars libary -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
     <!-- Including the firebase library -->

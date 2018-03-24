@@ -1,7 +1,8 @@
 
 var dev_id;
+var player;
 window.onSpotifyWebPlaybackSDKReady = () => {
-    var player = new Spotify.Player({
+     player = new Spotify.Player({
         name: 'Kickass Karaoke Player',
         spotify_uri : trackURI,
         getOAuthToken: callback => {
