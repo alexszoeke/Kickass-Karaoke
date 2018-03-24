@@ -99,7 +99,7 @@ h2 {
     display: none;
 }
 
-#login-success {
+#login-success, #spotify-uid {
     color: #ebbb4a;
 }
 
