@@ -130,6 +130,7 @@ $(document).ready(function () {
       $("#logout").hide();
       $("#trending-header").show();
       $("#recent-header").hide();
+      userOnline = false;
     }
   });
 
