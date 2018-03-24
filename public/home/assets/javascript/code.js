@@ -27,7 +27,7 @@ var refresh_token = url.searchParams.get("refresh_token");
                 userSpotifyEmail = response.email;
                 spotifyUserID = response.id;
                 
-                userDisplayNamePlaceholder.innerHTML = userDisplayNameTemplate(response);
+                // userDisplayNamePlaceholder.innerHTML = userDisplayNameTemplate(response);
 
               }
           });
