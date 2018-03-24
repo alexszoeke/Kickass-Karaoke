@@ -35,7 +35,7 @@ console.log("Access_token "  + access_token);
                     class : "row"
                   });
                   var sorry = $("<h4>").text("Sorry, your spotify account is not premium, so music play back is not possible. Please log-in with a premium spotify account.")
-                  var spotLoginBtn = $("<button>").attr({
+                  var spotLoginBtn = $("<a>").attr({
                     id : "spotify-login",
                     href : "/login",
                     class : "btn btn-primary mb-2"
@@ -43,7 +43,7 @@ console.log("Access_token "  + access_token);
                   $(sorryDiv).append(sorry);
                   $(sorryDiv).append(spotLoginBtn);
 
-                  $("#header").append(sorryDiv);
+                  $("#main-display").html(sorryDiv);
                 }
               }
           });
