@@ -85,7 +85,7 @@ $(document).ready(function () {
     $("#login").hide();
     $("#logout").show();
     $("#login-success").text("Logged in as " + email).show();
-    $("#spotify-uid").text("Spotify User ID: " + spotifyUserID).show();
+    $("#spotify-uid").text("Spotify User ID: " + spotifyDisplayName).show();
 
     auth.signInWithEmailAndPassword(email, password).catch(function (error) {
       // Handle Errors here.

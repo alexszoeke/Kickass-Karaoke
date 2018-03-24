@@ -5,11 +5,11 @@
 */
 
 
-var userDisplayNameSource = document.getElementById('user-name-template').innerHTML,
-    userDisplayNameTemplate = Handlebars.compile(userDisplayNameSource),
-    userDisplayNamePlaceholder = document.getElementById('display-name')
+
 var userSpotifyEmail;
 var spotifyUserID;
+var spotifyDisplayName;
+var userType;
 
 var url = new URL(window.location.href);
 var access_token = url.searchParams.get("access_token");
@@ -26,9 +26,8 @@ console.log("Access_token "  + access_token);
                   console.log(response);
                 userSpotifyEmail = response.email;
                 spotifyUserID = response.id;
-
-                userDisplayNamePlaceholder.innerHTML = userDisplayNameTemplate(response);
-
+                spotifyDisplayName = response.display_name;
+                userType = response.product;
               }
           });
         };
