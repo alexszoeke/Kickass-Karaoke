@@ -31,6 +31,7 @@ $("#song-search-btn").on("click", function(event){
               fix = fix.replace("\n", "<br>")
         
             }
+            $("#copyright").text(response.result.copyright.artist);
             // Displays the lyrics
             $("#lyrics-display").html(fix);
             console.log(response.result.track.text.indexOf("\n"))
