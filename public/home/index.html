@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Kickass Karaoke!</title>
+    <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon" />
 
     <!--Bootstrap CDN-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
@@ -30,6 +31,7 @@
                 <label for="staticEmail2" class="sr-only">Email</label>
                 <input type="text" class="form-control" id="username" placeholder="example@email.com">
                 <p id="login-success">Logged in: </p>
+                <p id="spotify-uid"></p>
             </div>
             <div class="form-group mx-sm-3 mb-2">
                 <label for="inputPassword2" class="sr-only">Password</label>
@@ -38,7 +40,7 @@
             <button type="submit" class="btn btn-primary mb-2" id="register">Register</button>
             <button type="submit" class="btn btn-primary mb-2" id="login">Login</button>
             <button type="submit" class="btn btn-primary mb-2" id="logout">Logout</button>
-            <h2 id= "display-name" class="clearfix"></h2>
+            <h2 id="display-name" class="clearfix"></h2>
         </form>
     </nav>
 
@@ -49,7 +51,7 @@
             <div class="col-md-5">
                 <h2>Song Search</h2>
                 <!--Song Search-->
-                <form class="form-inline needs-validation" novalidate>
+                <form class="form-inline needs-validation" id="search-form" novalidate>
                     <div class="form-row form-group mb-2">
                         <div class="form-group mx-sm-3 mb-2">
                             <label for="artist-search" class="sr-only">Artist</label>
@@ -66,19 +68,21 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary mb-2" id="song-search-btn" data-toggle="button" aria-pressed="false" autocomplete="off">Search</button>
+                    <button type="submit" class="btn btn-primary mb-2" id="song-search-btn">Search</button>
                 </form>
 
                 <!--Video Display-->
                 <div class="row" id="video-display">
 
-                </div>
-                <!--Recently Searched/Trending
-                Recently Searched will show for users who are logged in, trending will show for users who are not logged in
-                -->
-                <h2 id="recent-header">Recents</h2>
-                <h2 id="trending-header">Trending</h2>
-                <div class="row" id="recent-display">
+
+                    <div class="row" id="recent-display">
+                        <div class="col-md-6">
+                            <h2 id="recent-header">Recents</h2>
+                        </div>
+                        <div class="col-md-6">
+                            <h2 id="trending-header">Trending</h2>
+                        </div>
+                    </div>
 
                 </div>
             </div>
@@ -90,6 +94,11 @@
                 <div id="lyrics-display">
 
                 </div>
+                <br>
+                <br>
+                <div id="copyright">
+
+                </div>
             </div>
         </div>
     </div>
@@ -98,7 +107,7 @@
     <!--Footer-->
     <div class="fixed-bottom">
         <div class="copyright">
-            © Copyright 2018 Kickass Koders
+            © Copyright 2018 Kickass Coders
         </div>
     </div>
 
@@ -161,9 +170,10 @@
             window.addEventListener('load', function () {
                 // Fetch all the forms we want to apply custom Bootstrap validation styles to
                 var forms = document.getElementsByClassName('needs-validation');
+                var songBtn = document.getElementById("song-search-btn");
                 // Loop over them and prevent submission
                 var validation = Array.prototype.filter.call(forms, function (form) {
-                    form.addEventListener('submit', function (event) {
+                    songBtn.addEventListener('submit', function (event) {
                         if (form.checkValidity() === false) {
                             event.preventDefault();
                             event.stopPropagation();

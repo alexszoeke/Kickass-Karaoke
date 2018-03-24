@@ -63,9 +63,9 @@ $(document).ready(function () {
         $("#loginModal").modal();
         $("#username").show();
         $("#inputPassword2").show();
-        $("#register").hide();
-        $("#login").hide();
-        $("#logout").show();
+        $("#register").show();
+        $("#login").show();
+        $("#logout").hide();
       } else {
         console.log(errorMessage);
       }
@@ -84,7 +84,8 @@ $(document).ready(function () {
     $("#register").hide();
     $("#login").hide();
     $("#logout").show();
-    $("#login-success").text("Logged in as " + email).show()
+    $("#login-success").text("Logged in as " + email).show();
+    $("#spotify-uid").text("Spotify User ID: " + spotifyUserID).show();
 
     auth.signInWithEmailAndPassword(email, password).catch(function (error) {
       // Handle Errors here.
@@ -101,6 +102,7 @@ $(document).ready(function () {
         $("#login").show();
         $("#logout").hide();
         $("#login-success").hide();
+        $("#spotify-uid").hide();
       } else {
         console.log(errorMessage);
 
@@ -129,6 +131,7 @@ $(document).ready(function () {
       $("#logout").hide();
       $("#trending-header").show();
       $("#recent-header").hide();
+      userOnline = false;
     }
   });
 
@@ -188,9 +191,6 @@ $(document).ready(function () {
       var sortedGlobeArtist = Object.keys(globeArtist).sort(function (a, b) {
         return globeArtist[b] - globeArtist[a]
       })
-      console.log(sortedGlobeArtist);
-
-      console.log(globeArtist);
 
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
@@ -205,7 +205,6 @@ $(document).ready(function () {
       var sortedGlobeSong = Object.keys(globeSong).sort(function (a, b) {
         return globeSong[b] - globeSong[a]
       })
-      console.log(sortedGlobeSong);
 
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
@@ -257,7 +256,6 @@ $(document).ready(function () {
     arr.forEach(function (i) {
       count[i] = (count[i] || 0) + 1;
     });
-    console.log(count);
     return count;
   }
   function titleCase(str) {
@@ -266,7 +264,6 @@ $(document).ready(function () {
       // Assign it back to the array
       splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
     }
-    console.log(splitStr.join(""));
     return splitStr.join(' ');
   }
 
@@ -284,9 +281,6 @@ $(document).ready(function () {
       var sortedUserArtist = Object.keys(userArtist).sort(function (a, b) {
         return userArtist[b] - userArtist[a]
       })
-      console.log(sortedUserArtist);
-
-      console.log(userArtist);
 
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
@@ -301,7 +295,6 @@ $(document).ready(function () {
       var sortedUserSong = Object.keys(userSong).sort(function (a, b) {
         return userSong[b] - userSong[a]
       })
-      console.log(sortedUserSong);
 
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
@@ -331,6 +324,7 @@ $(document).ready(function () {
       $("#username").show();
       $("#inputPassword2").show();
       $("#login-success").hide();
+      $("#spotify-uid").hide();
       $(".recentSearch").remove();
       updateGlobeSearch();
       auth.signOut().then(function () {

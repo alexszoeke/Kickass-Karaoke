@@ -11,6 +11,10 @@ $("#song-search-btn").on("click", function(event){
     var artistSearch = $("#artist-search").val();
     // Captures the title val
     var titleSearch = $("#title-search").val();
+    // Captures the artist val
+    $("#artist-search").val("");
+    // Captures the title val
+    $("#title-search").val("");
 
 
       // Building the queryURL for the call to the lyrics API
@@ -21,12 +25,13 @@ $("#song-search-btn").on("click", function(event){
         method: "GET",
         success: function (response) {
         
-            //for loop or replace for the entire string to make them new lines
+            //for loop to replace the js /n with <br> the entire string to make them new lines in html
             var fix = response.result.track.text;
             while (fix.indexOf("\n") !== -1) {
               fix = fix.replace("\n", "<br>")
         
             }
+            $("#copyright").text("© " + response.result.copyright.artist);
             // Displays the lyrics
             $("#lyrics-display").html(fix);
             console.log(response.result.track.text.indexOf("\n"))
@@ -40,6 +45,11 @@ $("#song-search-btn").on("click", function(event){
             
           }
     });
+});
+
+//clearing lyrics on log out
+$("#logout").on("click", function(event){
+  $("#lyrics-display").empty();
 });
 
 // Function to go into our back-end js to get the spotifiy information for our track

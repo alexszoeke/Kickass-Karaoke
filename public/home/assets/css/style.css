@@ -4,8 +4,13 @@ font-family: 'Yanone Kaffeesatz', sans-serif; */
 
 @media screen and (max-width: 1024px) {
     .form-inline {
-        display: block;
+        /* display: block; */
         text-align: center;
+    }
+
+    .form-group {
+        display: inherit!important;
+        width: 100%;
     }
 
     #spotlight {
@@ -27,6 +32,14 @@ font-family: 'Yanone Kaffeesatz', sans-serif; */
 
     .col-md-6 > h2 {
         text-align: left!important;
+    }
+
+    #title-search {
+        margin-left: 0px!important;
+    }
+
+    #register {
+        margin-right: 0px!important;
     }
 }
 
@@ -57,6 +70,10 @@ body {
     text-align: center;
 }
 
+.row {
+    margin-left: 0px;
+}
+
 
 
 /* Headers */
@@ -78,16 +95,20 @@ h2 {
 
 /* Forms */
 /* Login */
-#logout, #login-success {
+#logout, #login-success, #spotify-uid {
     display: none;
 }
 
-#login-success {
+#login-success, #spotify-uid {
     color: #ebbb4a;
 }
 
 #register {
     margin-right: 10px;
+}
+
+#title-search {
+    margin-left: -15px;
 }
 
 .form-control {
@@ -105,7 +126,7 @@ h2 {
     font-size: 18px;
 }
 
-/* Lyrics Display */
+/* Lyrics Header */
 #lyrics {
     z-index: 1;
 }
@@ -145,8 +166,14 @@ h2 {
 }
 
 
+
+.mb-2 {
+    margin-bottom: 0!important;
+}  /*This makes buttons perfectly in line with their forms at max width!*/
+
+
 /* These ID's are making certain elements hidden until the logic says otherwise */
-#recent-header, #login-success  {
+#login-success  {
     display: none;
 }
 
