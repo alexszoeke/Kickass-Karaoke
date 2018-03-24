@@ -73,17 +73,44 @@
 
                 <!--Video Display-->
                 <div class="row" id="video-display">
+                    <div class="card media-player">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <button type="button" class="btn btn-default">
+                                        <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Play/Pause
+                                    </button>
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="row">
+                                        <h5 class="card-title song">Song</h5> 
+                                        <h5 class="card-title">by</h5>
+                                        <h5 class="card-title artist">Artist</h5>
+                                    </div>
+                                    <div class="row">
+                                        <input id="vol-control" type="range" min="0" max="100" step="1" oninput="SetVolume(this.value)" onchange="SetVolume(this.value)"></input>
+                                    </div>
 
-
-                    <div class="row" id="recent-display">
-                        <div class="col-md-6">
-                            <h2 id="recent-header">Recents</h2>
-                        </div>
-                        <div class="col-md-6">
-                            <h2 id="trending-header">Trending</h2>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary mirror-btn" value="0">Mirror 1</button>
+                            <button class="btn btn-primary mirror-btn" value="1">Mirror 2</button>
+                            <button class="btn btn-primary mirror-btn" value="2">Mirror 3</button>
+                            <button class="btn btn-primary mirror-btn" value="3">Mirror 4</button>
+                            <button class="btn btn-primary mirror-btn" value="4">Mirror 5</button>
                         </div>
                     </div>
 
+
+
+                </div>
+                <div class="row" id="recent-display">
+                    <div class="col-md-6">
+                        <h2 id="recent-header">Recents</h2>
+                    </div>
+                    <div class="col-md-6">
+                        <h2 id="trending-header">Trending</h2>
+                    </div>
                 </div>
             </div>
 
@@ -133,6 +160,8 @@
     </div>
     <!--End Modal-->
 
+    <!-- Including the script so that when app loads it goes straight to spotify login -->
+    <script src="./home/assets/javascript/spotLogin.js"></script>
     <!-- Including the handlebars libary -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
     <!-- Including the firebase library -->
@@ -140,14 +169,14 @@
     <!-- Including Jquery library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Including our own firebase javascipts -->
-    <script src="./assets/javascript/firebase.js"></script>    
+    <script src="./assets/javascript/firebase.js"></script>
     <!-- Indcluding the poppers library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
-    <!-- Including bootstrap JS library -->    
+    <!-- Including bootstrap JS library -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-    <!-- These are templates using the handlebars -->    
+    <!-- These are templates using the handlebars -->
     <script id="user-name-template" type="text/x-handlebars-template">
             <h2>Logged in as {{display_name}}</h1>
            
@@ -155,7 +184,7 @@
     <script id="spotify-player-template" type="text/x-handlebars-template">
     
         </script>
-    <!-- Code.js includes how we get the access_token and users spotify information -->    
+    <!-- Code.js includes how we get the access_token and users spotify information -->
     <script src="./assets/javascript/code.js"></script>
     <!-- Includes spotify's library for the spotify player -->
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
