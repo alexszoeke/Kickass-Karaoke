@@ -74,15 +74,19 @@ function callSpotify(artist, title){
 
 // Function to find the song we're looking for
 function displaySong(songs){
- //Saves the first song's uri into the variabel trackURI
+ //Saves the first song's variables into their corresponding variables
  trackURI = songs[0].uri;
  currentArtist = songs[0].artists[0].name;
  currentTrack = songs[0].name;
  console.log(trackURI);
+ // Pushes the trackURI to be played
  pushTrack(trackURI);
 
+ // Prints out the according variables to the corresponding places
  $("#song").text(currentTrack + " ");
  $("#artist").text(currentArtist);
+
+ //On-click events to allow users to choose which mirrors the user can play
  $(".mirror-btn").on('click', function(e){
     var mirrorNum = $(this).val();
     trackURI = songs[mirrorNum].uri;
@@ -93,13 +97,14 @@ function displaySong(songs){
     console.log(trackURI);
     pushTrack(trackURI);
  });
+
+ //Add the on-click event to allow user to pause and play the track
  $("#play-pause").on('click', function(e){
   player.togglePlay();
 });
 };
 
-//Function to push the trackURI into our back-end
-
+//Function to push the trackURI to be played on the player
 function pushTrack(URI){
 
   fetch('https://api.spotify.com/v1/me/player/play?device_id=' + dev_id ,{
@@ -114,13 +119,15 @@ function pushTrack(URI){
 
  
 
-}
+};
 
+
+// Function to change the volume of the player
 function SetVolume(val){
 
   var volume = val / 100;
   player.setVolume(volume);
-}
+};
 
 
 
