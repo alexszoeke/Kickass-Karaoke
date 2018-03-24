@@ -54,6 +54,18 @@ $("#logout").on("click", function(event){
   $("#lyrics-display").empty();
 });
 
+
+// Loging out
+$("#spotify-login").on('click', function(){
+  $.ajax({
+    url : "/clearcookie",
+    success : function(data){
+
+      console.log(data);
+      document.location.href = document.location.hostname + 'login';
+    }
+  })
+});
 // Function to go into our back-end js to get the spotifiy information for our track
 function callSpotify(artist, title){
 

@@ -193,5 +193,9 @@ app.put('/play', function (req, res){
 
     
 })
+
+app.get('/clearcookies', function (req, res){
+  res.clearCookie(stateKey);
+})
 console.log('Listening on 8888');
 app.listen(process.env.PORT || 8888);
