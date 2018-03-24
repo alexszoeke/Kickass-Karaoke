@@ -63,9 +63,9 @@ $(document).ready(function () {
         $("#loginModal").modal();
         $("#username").show();
         $("#inputPassword2").show();
-        $("#register").hide();
-        $("#login").hide();
-        $("#logout").show();
+        $("#register").show();
+        $("#login").show();
+        $("#logout").hide();
       } else {
         console.log(errorMessage);
       }
@@ -102,6 +102,7 @@ $(document).ready(function () {
         $("#login").show();
         $("#logout").hide();
         $("#login-success").hide();
+        $("#spotify-uid").hide();
       } else {
         console.log(errorMessage);
 
