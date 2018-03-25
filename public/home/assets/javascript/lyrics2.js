@@ -2,6 +2,8 @@
 var spotRes;
 // To hold the track URI 
 var trackURI;
+var currentArtist;
+var currentTrack;
 
 //Capture User input 
 $("#song-search-btn").on("click", function(event){
@@ -64,61 +66,68 @@ function callSpotify(artist, title){
       console.log("In response"); // To make sure we're in the response
       spotRes = response; // Holding the response into the variable spotRes
 
-      findSong(spotRes.tracks.items); // Puts the array of the song items into the function find song
+      displaySong(spotRes.tracks.items); // Puts the array of the song items into the function find song
       console.log(response);
     }
   })
 };
 
 // Function to find the song we're looking for
-function findSong(songs){
- //Saves the first song's uri into the variabel trackURI
+function displaySong(songs){
+ //Saves the first song's variables into their corresponding variables
  trackURI = songs[0].uri;
+ currentArtist = songs[0].artists[0].name;
+ currentTrack = songs[0].name;
  console.log(trackURI);
- pushURI(trackURI);
- 
- };
+ // Pushes the trackURI to be played
+ pushTrack(trackURI);
 
-//Function to push the trackURI into our back-end
+ // Prints out the according variables to the corresponding places
+ $("#song").text(currentTrack + " ");
+ $("#artist").text(currentArtist);
 
-function pushURI(URI){
+ //On-click events to allow users to choose which mirrors the user can play
+ $(".mirror-btn").on('click', function(e){
+    var mirrorNum = $(this).val();
+    trackURI = songs[mirrorNum].uri;
+    currentArtist = songs[mirrorNum].artists[0].name;
+    currentTrack = songs[mirrorNum].name
+    $("#song").text(currentTrack + " ");
+    $("#artist").text(currentArtist);
+    console.log(trackURI);
+    pushTrack(trackURI);
+ });
 
-//   $.ajax({
-//     method: 'PUT',
-//     url: 'https://api.spotify.com/v1/me/player/play?device_id=' + dev_id,    
-//     data: {
-//       context_uri : URI,
-//       offset: {
-//         position: 5
-//       }
-//     },
-//     headers: {
-//       'Accept' : 'application/json',
-//       'Content-Type' : 'application/json',
-//       'Authorization': "Bearer " + access_token  
-//     },
-//     success: function(response){
-//       console.log("Success in call to player");
-//       console.log(response);
-//     },
-//     error: function(err){
-//       console.log('Error : ' + err);
-//     }
-// });
+ //Add the on-click event to allow user to pause and play the track
+ $("#play-pause").on('click', function(e){
+  player.togglePlay();
+});
+};
 
-  $.ajax({
-    url: '/play', //Call to our backend in the '/play' path
+//Function to push the trackURI to be played on the player
+function pushTrack(URI){
+
+  fetch('https://api.spotify.com/v1/me/player/play?device_id=' + dev_id ,{
     method: 'PUT',
-    dataType: 'JSON',
-    data: {URI, dev_id, access_token}, // Pushes the track URI the device ID and the access_token into our call to our backend
-    success: function(response){
-      console.log("Response successful");
-      console.log(response);
-    }, 
-  })
+    body: JSON.stringify({ uris: [URI] }),
+    headers : {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${access_token}`
+    }
+  });
+ 
 
-}
+ 
 
+};
+
+
+// Function to change the volume of the player
+function SetVolume(val){
+
+  var volume = val / 100;
+  player.setVolume(volume);
+};
 
 
 

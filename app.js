@@ -10,11 +10,11 @@ var bodyParser = require('body-parser')
 var spotifyApi = new SpotifyWebApi({
   clientId: '6b5333e36255420cbe72baede7fde86d',
   clientSecret: 'cacee0742a844488a33ad4623eeaed1c',
-  redirectUri: 'http://localhost:8888/callback'
+  redirectUri: "http://localhost:8888/callback"
 });
 var client_id = '6b5333e36255420cbe72baede7fde86d'; // Your client id
 var client_secret = 'cacee0742a844488a33ad4623eeaed1c'; // Your secret
-var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
+var redirect_uri = "http://localhost:8888/callback" ; // Your redirect uri
 
 
 
@@ -172,24 +172,26 @@ app.put('/play', function (req, res){
 
   var play = {
     url: 'https://api.spotify.com/v1/me/player/play?device_id=' + Request.dev_id,
+    method: "PUT",
+    json: true,
     headers: {
       'Accept' : 'application/json',
       'Content-Type' : 'application/json',
       'Authorization': 'Bearer ' + Request.access_token  
     },
-    data: {
-      'context_uri' : Request.URI,
-      'offset': {
-        'position': 5
+    body: {   
+      data: {
+        'uris' : Request.URI,
       }
     }
-    
 };
-   request.put(play, function(error, response){
-     console.log(error);
+
+   request(play, function(error, response){
+     console.log(response);
+     console.log("-------------------------------------------------------------")
    });
 
     
 })
 console.log('Listening on 8888');
-app.listen(8888);
+app.listen(process.env.PORT || 8888);
