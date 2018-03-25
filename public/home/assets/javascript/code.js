@@ -34,29 +34,19 @@ console.log("Access_token "  + access_token);
                     id : "sorry-div",
                     class : "row"
                   });
-                  var sorry = $("<h4>").text("Sorry, your spotify account is not premium, so music play back is not possible. Please log-in with a premium spotify account.")
-                  var spotLoginBtn = $("<a>").attr({
-                    id : "spotify-login",
-                    href : "/",
-                    class : "btn btn-primary mb-2"
-                  }).text("Login with new spotify account");
+                  var sorry = $("<h4>").text("Sorry, your spotify account is not premium, so music play back is not possible. Please clear your cookies, then log-in with a premium spotify account.");
+                  // var spotLoginBtn = $("<a>").attr({
+                  //   id : "spotify-login",
+                  //   href : "/",
+                  //   class : "btn btn-primary mb-2"
+                  // }).text("Login with new spotify account");
                   $(sorryDiv).append(sorry);
-                  $(sorryDiv).append(spotLoginBtn);
+                  // $(sorryDiv).append(spotLoginBtn);
 
                   
                   $("#main-display").html(sorryDiv);
 
-                // Loging out
-$("#spotify-login").on('click', function(e){
-  e.preventDefault();
-  $.ajax({
-    url : "/clearcookies",
-    success : function(data){
 
-      console.log(data);
-    }
-  })
-});
                 }
               }
           });

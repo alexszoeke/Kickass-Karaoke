@@ -49,7 +49,10 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public')).use(cookieParser());
 
 app.get('/login', function (req, res) {
-
+  console.log(req);
+  if (req.body.clear == "cookies"){
+    res.clearCookie(stateKey)
+  };
   var state = generateRandomString(16);
   res.cookie(stateKey, state);
 
@@ -200,6 +203,7 @@ app.put('/play', function (req, res){
 app.get('/clearcookies', function (req, res){
   console.log("-------------------------------------")
   res.clearCookie(stateKey);
+  console.log(req.signedCookies.stateKey);
 
 });
 console.log('Listening on 8888');

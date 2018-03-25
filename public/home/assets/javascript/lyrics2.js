@@ -53,8 +53,23 @@ $("#song-search-btn").on("click", function(event){
 $("#logout").on("click", function(event){
   $("#lyrics-display").empty();
 });
-
-
+// for future updates
+                // Loging out
+                // $("#spotify-login").on('click', function(e){
+                //   e.preventDefault();
+                //   $.ajax({
+                //     url : "/login",
+                //     body : {
+                //       clear : 'cookies'
+                //     },
+                //     success : function(data){
+                //       console.log("Successssss");
+                //     },
+                //     error : function (data){
+                //       console.log(data);
+                //     }
+                //   })
+                // });
 
 // Function to go into our back-end js to get the spotifiy information for our track
 function callSpotify(artist, title){
