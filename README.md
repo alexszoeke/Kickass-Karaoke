@@ -18,4 +18,13 @@ This is a browser based karaoke app, that includes song lyrics and music to crea
 * **Michael Tran**
 * **Shelby Smith**
 
+## Future Development
+* Combining Spotify login with firebase login
+* Populate song list based on artist
+* Highlight words
+* Album Cover display
+* User settings to change account information
+
+
+
 
