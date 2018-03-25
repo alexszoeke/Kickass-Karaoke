@@ -10,8 +10,8 @@ var bodyParser = require('body-parser')
 
 var client_id = '6b5333e36255420cbe72baede7fde86d'; // Your client id
 var client_secret = 'cacee0742a844488a33ad4623eeaed1c'; // Your secret
-//var redirect_uri = "https://shielded-gorge-35242.herokuapp.com/callback" ; // Your redirect uri
-var redirect_uri = "http://localhost:8888/callback";
+var redirect_uri = "https://shielded-gorge-35242.herokuapp.com/callback" ; // Your redirect uri
+// var redirect_uri = "http://localhost:8888/callback";
 // credentials are optional
 var spotifyApi = new SpotifyWebApi({
   clientId: client_id,
