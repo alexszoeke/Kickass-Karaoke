@@ -24,6 +24,8 @@ This is a browser based karaoke app, that includes song lyrics and music to crea
 * Highlight words
 * Album Cover display
 * User settings to change account information
+* Spotify logout
+* Prompt users to login to spotify account once they start searching for music to play as opposed to onload so they are able to actually see the app. 
 
 
 
