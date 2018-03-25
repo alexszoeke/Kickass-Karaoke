@@ -33,7 +33,7 @@
                 <p id="login-success">Logged in: </p>
                 <p id="spotify-uid"></p>
             </div>
-            <div class="form-group mx-sm-3 mb-2">
+            <div class="form-group mb-2">
                 <label for="inputPassword2" class="sr-only">Password</label>
                 <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
             </div>
@@ -51,37 +51,37 @@
             <div class="col-md-5">
                 <h2>Song Search</h2>
                 <!--Song Search-->
-                <form class="form-inline needs-validation" id="search-form" novalidate>
-                    <div class="form-row form-group mb-2">
-                        <div class="form-group mx-sm-3 mb-2">
-                            <label for="artist-search" class="sr-only">Artist</label>
-                            <input type="text" class="form-control" id="artist-search" placeholder="Artist" required>
-                            <div class="invalid-feedback">
-                                Please provide a valid artist.
-                            </div>
-                        </div>
-                        <div class="form-group mx-sm-3 mb-2">
-                            <label for="title-search" class="sr-only">Song</label>
-                            <input type="text" class="form-control" id="title-search" placeholder="Song" required>
-                            <div class="invalid-feedback">
-                                Please provide a valid song.
-                            </div>
+                <div class="row">
+                    <div class="card">
+                        <div class="card-body">
+                            <form class="form-inline" id="search-form">
+                                <div class="form-row form-group mb-2">
+                                    <div class="form-group mb-2">
+                                        <label for="artist-search" class="sr-only">Artist</label>
+                                        <input type="text" class="form-control" id="artist-search" placeholder="Artist">
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <label for="title-search" class="sr-only">Song</label>
+                                        <input type="text" class="form-control" id="title-search" placeholder="Song">
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary mb-2" id="song-search-btn">Search</button>
+                            </form>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary mb-2" id="song-search-btn">Search</button>
-                </form>
+                </div>
 
                 <!--Video Display-->
                 <div class="row" id="video-display">
                     <div class="card media-player">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-2">
-                                    <button type="button" class="btn btn-default" id="play-pause">
-                                        <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Play/Pause
+                                <div class="col-md-4">
+                                    <button type="button" class="btn btn-primary mb-2">
+                                        Play/Pause
                                     </button>
                                 </div>
-                                <div class="col-md-10">
+                                <div class="col-md-8">
                                     <div class="row">
                                         <h5 class="card-title" id="song">Song</h5> 
                                         <h5 class="card-title">by</h5>
@@ -93,11 +93,13 @@
 
                                 </div>
                             </div>
-                            <button class="btn btn-primary mirror-btn" value="0">Mirror 1</button>
-                            <button class="btn btn-primary mirror-btn" value="1">Mirror 2</button>
-                            <button class="btn btn-primary mirror-btn" value="2">Mirror 3</button>
-                            <button class="btn btn-primary mirror-btn" value="3">Mirror 4</button>
-                            <button class="btn btn-primary mirror-btn" value="4">Mirror 5</button>
+                            <div class="card-footer">
+                                <button class="btn btn-primary mirror-btn" value="0">Option 1</button>
+                                <button class="btn btn-primary mirror-btn" value="1">Option 2</button>
+                                <button class="btn btn-primary mirror-btn" value="2">Option 3</button>
+                                <button class="btn btn-primary mirror-btn" value="3">Option 4</button>
+                                <button class="btn btn-primary mirror-btn" value="4">Option 5</button>
+                            </div>
                         </div>
                     </div>
 
@@ -191,28 +193,6 @@
     <script src="./assets/javascript/player.js"></script>
     <!-- Including our Javascript that gets the lyrics and includes the calls to our back-end for spotify -->
     <script src="./assets/javascript/lyrics2.js"></script>
-    <script>
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (function () {
-            'use strict';
-            window.addEventListener('load', function () {
-                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                var forms = document.getElementsByClassName('needs-validation');
-                var songBtn = document.getElementById("song-search-btn");
-                // Loop over them and prevent submission
-                var validation = Array.prototype.filter.call(forms, function (form) {
-                    songBtn.addEventListener('submit', function (event) {
-                        if (form.checkValidity() === false) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            }, false);
-        })();
-    </script>
-
 </body>
 
 </html>

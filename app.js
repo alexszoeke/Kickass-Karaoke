@@ -6,15 +6,18 @@ var spotify = require('spotify');
 var SpotifyWebApi = require('spotify-web-api-node');
 var bodyParser = require('body-parser')
 
-// credentials are optional
-var spotifyApi = new SpotifyWebApi({
-  clientId: '6b5333e36255420cbe72baede7fde86d',
-  clientSecret: 'cacee0742a844488a33ad4623eeaed1c',
-  redirectUri: "https://shielded-gorge-35242.herokuapp.com/callback"
-});
+
+
 var client_id = '6b5333e36255420cbe72baede7fde86d'; // Your client id
 var client_secret = 'cacee0742a844488a33ad4623eeaed1c'; // Your secret
-var redirect_uri = "https://shielded-gorge-35242.herokuapp.com/callback" ; // Your redirect uri
+//var redirect_uri = "https://shielded-gorge-35242.herokuapp.com/callback" ; // Your redirect uri
+var redirect_uri = "http://localhost:8888/callback";
+// credentials are optional
+var spotifyApi = new SpotifyWebApi({
+  clientId: client_id,
+  clientSecret: client_secret,
+  redirectUri: redirect_uri
+});
 
 
 
@@ -68,7 +71,7 @@ app.get('/callback', function (req, res) {
 
   // your application requests refresh and access tokens
   // after checking the state parameter
-  console.log("/Callback ");
+ // console.log("/Callback ");
   var code = req.query.code || null;
   var state = req.query.state || null;
   var storedState = req.cookies ? req.cookies[stateKey] : null;
@@ -107,7 +110,7 @@ app.get('/callback', function (req, res) {
 
         // use the access token to access the Spotify Web API
         request.get(options, function (error, response, body) {
-          console.log(body);
+    //      console.log(body);
         });
 
         // we can also pass the token to the browser to make requests from there
@@ -188,14 +191,16 @@ app.put('/play', function (req, res){
 
    request(play, function(error, response){
      console.log(response);
-     console.log("-------------------------------------------------------------")
+    // console.log("-------------------------------------------------------------")
    });
 
     
 })
 
 app.get('/clearcookies', function (req, res){
+  console.log("-------------------------------------")
   res.clearCookie(stateKey);
-})
+
+});
 console.log('Listening on 8888');
 app.listen(process.env.PORT || 8888);
