@@ -1,20 +1,26 @@
-/* font-family: 'Limelight', cursive;
-font-family: 'Yanone Kaffeesatz', sans-serif; */
+/* Begin Media Queries */
 
+@media screen and (max-width: 1304px) and (min-width: 1025px) {
+    #search-form {
+        display: grid;
+    }
+}
 
 @media screen and (max-width: 1024px) {
-    .form-inline {
-        /* display: block; */
-        text-align: center;
+    .form-inline{
+        flex-flow: nowrap;
     }
 
-    .form-group {
-        display: inherit!important;
-        width: 100%;
+    .form-row {
+        width: min-content;
+    }
+
+    #register {
+        margin-right: 0px!important;
     }
 
     #spotlight {
-        display: none;
+        display: none!important;
     }
 
     .navbar{
@@ -26,24 +32,37 @@ font-family: 'Yanone Kaffeesatz', sans-serif; */
         white-space: normal;
     }
 
-    .btn-primary, form  {
-        width: 100%;
-    }
-
     .col-md-6 > h2 {
         text-align: left!important;
     }
 
-    #title-search {
-        margin-left: 0px!important;
+    .card-title {
+        margin: auto
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .form-group {
+        margin: 0px!important;
+    }
+}
+
+@media screen and (max-width: 670px) {
+    .mb-2 {
+        width: 100%!important;
     }
 
-    #register {
-        margin-right: 0px!important;
+    .form-inline {
+        display: block;
     }
 }
 
 
+/* End Media Queries */
+
+/* font-family: 'Limelight', cursive;
+font-family: 'Yanone Kaffeesatz', sans-serif; */
 
 /* NavBar */
 .bg-dark {
@@ -70,12 +89,6 @@ body {
     text-align: center;
 }
 
-.row {
-    margin-left: 0px;
-}
-
-
-
 /* Headers */
 h1, h2 {
     font-family: 'Limelight', cursive;
@@ -92,9 +105,35 @@ h2 {
     color: #c9252f;
 }
 
+h3 {
+    color: #c9252f;
+    font-weight: bold; 
+}
+
+/* Card */
+
+.card {
+    margin: 10px;
+    background-color: #aaaaaa;
+    border: solid white 1px;
+    border-radius: .75rem;
+    width: 100%;
+}
+
+.card-footer {
+    background-color: #aaaaaa;
+}
+
+#vol-control {
+    width: 80%;
+}
 
 /* Forms */
 /* Login */
+
+.form-group {
+    margin: 0px 5px;
+}
 #logout, #login-success, #spotify-uid {
     display: none;
 }
@@ -105,10 +144,6 @@ h2 {
 
 #register {
     margin-right: 10px;
-}
-
-#title-search {
-    margin-left: -15px;
 }
 
 .form-control {
@@ -169,7 +204,8 @@ h2 {
 
 .mb-2 {
     margin-bottom: 0!important;
-}  /*This makes buttons perfectly in line with their forms at max width!*/
+}  
+/* This makes buttons perfectly in line with their forms at max width! */
 
 
 /* These ID's are making certain elements hidden until the logic says otherwise */
